@@ -7,4 +7,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="titulo_salvar">Salvar</string>
     <string name="title_cad_pedido">pedido</string>
+
+
+    <string-array name="menu">
+        <item>Arroz com carne, couve flor, feijão e salada </item>
+        <item>Arroz com brocólis e milho, strogonoff de frango fit e legumes</item>
+        <item>Escondidinho de carne moída, legumes refogados e salada</item>
+        <item>Arroz com brocólis, parmegiana de frango fit, legumes  e salada</item>
+    </string-array>
 </resources>
