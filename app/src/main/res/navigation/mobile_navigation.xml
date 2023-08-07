@@ -22,4 +22,9 @@
         android:name="br.dev.adinamjunior.mobile.cantinhosaudaveldadri.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_cad_pedido"
+        android:name="br.dev.adinamjunior.mobile.cantinhosaudaveldadri.ui.alimento.CadAlimentoFragment"
+        android:label="@string/title_cad_pedido"
+        tools:layout="@layout/fragment_cad_alimento" />
 </navigation>
