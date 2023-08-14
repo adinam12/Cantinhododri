@@ -14,12 +14,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <CheckBox
-                android:id="@+id/cbMarmitasDiponiveis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Marmitas diponiveis" />
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -30,14 +24,20 @@
                 android:id="@+id/spMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/menu"
-                />
+                android:entries="@array/menu" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quantidade de pedidos" />
+
+            <EditText
+                android:id="@+id/etQuantidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
 
             <CalendarView
                 android:id="@+id/cvDataPedido"

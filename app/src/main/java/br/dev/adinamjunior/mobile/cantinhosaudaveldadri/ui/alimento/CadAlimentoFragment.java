@@ -1,66 +1,79 @@
 package br.dev.adinamjunior.mobile.cantinhosaudaveldadri.ui.alimento;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.dev.adinamjunior.mobile.cantinhosaudaveldadri.R;
+import br.dev.adinamjunior.mobile.cantinhosaudaveldadri.model.Pedido;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CadAlimentoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CadAlimentoFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CadAlimentoFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CadAlimentoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CadAlimentoFragment newInstance(String param1, String param2) {
-        CadAlimentoFragment fragment = new CadAlimentoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class CadAlimentoFragment extends Fragment implements View.OnClickListener{
+    private View view;
+    private EditText etQtd;
+    private Spinner spCodMarmita;
+    private CalendarView cvData;
+    private Button btSalvar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        ((AppCompatActivity)getActivity()).getSupportActionBar()
+                .setDisplayShowCustomEnabled(false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar()
+                .setDisplayHomeAsUpEnabled(false);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_alimento, container, false);
+
+        this.etQtd = (EditText) view.findViewById(R.id.etQuantidade);
+        this.spCodMarmita = (Spinner) view.findViewById(R.id.spMenu);
+        this.cvData = (CalendarView) view.findViewById(R.id.cvDataPedido);
+
+
+
+        this.view = inflater.inflate(R.layout.fragment_cad_alimento, container, false);
+        return this.view;
     }
-}
+
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.btSalvar:
+                Pedido u = new Pedido();
+
+                u.setCodMarmita( this.spCodMarmita.getSelectedItemPosition());
+                u.setQuantidade(Integer.parseInt(this.etQtd.getText().toString()));
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String dataSelecionada = sdf.format(new
+                        Date(cvData.getDate()));
+                u.setDatadopedido(dataSelecionada);
+
+                //mensagem de sucesso
+                Context context = view.getContext();
+                CharSequence text = "salvo com sucesso!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText
+                        (context, text, duration);
+                toast.show();
+                break;
+        }
+        this.btSalvar.setOnClickListener(this);
+
+    }
+    }
