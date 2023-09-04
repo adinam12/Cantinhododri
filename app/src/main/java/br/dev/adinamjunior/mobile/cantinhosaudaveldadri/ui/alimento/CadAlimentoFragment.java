@@ -41,24 +41,27 @@ public class CadAlimentoFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        this.view = inflater.inflate(R.layout.fragment_cad_alimento, container, false);
+
         this.etQtd = (EditText) view.findViewById(R.id.etQuantidade);
         this.spCodMarmita = (Spinner) view.findViewById(R.id.spMenu);
         this.cvData = (CalendarView) view.findViewById(R.id.cvDataPedido);
+        this.btSalvar = (Button) view.findViewById(R.id.btSalvar);
+        this.btSalvar.setOnClickListener(this);
 
-
-
-        this.view = inflater.inflate(R.layout.fragment_cad_alimento, container, false);
         return this.view;
     }
 
     public void onClick(View view) {
+
+
         switch (view.getId()) {
 
             case R.id.btSalvar:
                 Pedido u = new Pedido();
 
                 u.setCodMarmita( this.spCodMarmita.getSelectedItemPosition());
-                u.setQuantidade(Integer.parseInt(this.etQtd.getText().toString()));
+                u.setQuantidade(Integer.valueOf(this.etQtd.getText().toString()));
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String dataSelecionada = sdf.format(new
                         Date(cvData.getDate()));
@@ -73,7 +76,6 @@ public class CadAlimentoFragment extends Fragment implements View.OnClickListene
                 toast.show();
                 break;
         }
-        this.btSalvar.setOnClickListener(this);
 
     }
     }

@@ -81,7 +81,7 @@ public class Pedido {
 //se chegar até aqui não deu erro no parser
             this.datadopedido = datadopedido;
         } catch (ParseException e) {
-            this.datadopedido = "1900-01-01";
+            this.datadopedido = "2023-08-08";
         }
 
     }
